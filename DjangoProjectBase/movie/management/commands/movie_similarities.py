@@ -15,7 +15,7 @@ class Command(BaseCommand):
 
         # ✅ Change these titles for any movies you want to compare
         movie1 = Movie.objects.get(title="Cinderella")
-        movie2 = Movie.objects.get(title="Fantomas")
+        movie2 = Movie.objects.get(title="The House of Darkness")
 
         def get_embedding(text):
             response = client.embeddings.create(
@@ -36,7 +36,7 @@ class Command(BaseCommand):
         self.stdout.write(f"\U0001F3AC Similaridad entre '{movie1.title}' y '{movie2.title}': {similarity:.4f}")
 
         # ✅ Optional: Compare against a prompt
-        prompt = "película de accion y aventuras"
+        prompt = "película con hadas y magia"
         prompt_emb = get_embedding(prompt)
 
         sim_prompt_movie1 = cosine_similarity(prompt_emb, emb1)
